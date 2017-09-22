@@ -1,0 +1,19 @@
+.landing-page i {
+  font-size: 20px; }
+  .landing-page i.fa-bars, .landing-page i.fa-times {
+    cursor: pointer; }
+  .landing-page i.fa-sign-in {
+    width: 22.86px; }
+.landing-page input:focus ~ label.control-label {
+  font-size: 11px;
+  top: 10px; }
+.landing-page .react-datepicker-wrapper {
+  width: 100%; }
+  .landing-page .react-datepicker-wrapper .react-datepicker__input-container {
+    width: 100%; }
+.landing-page .react-datepicker-popper {
+  z-index: 10; }
+.landing-page ul.nav-tabs > li > a.active i {
+  color: #ff5e3a; }
+
+/*# sourceMappingURL=customs.css.map */
