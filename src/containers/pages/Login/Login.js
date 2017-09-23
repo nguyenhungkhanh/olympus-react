@@ -66,8 +66,8 @@ class Login extends Component {
                     <a href="#" className="js-expanded-menu">
                       {
                         this.state.isExpanded
-                        ? <i className="fa fa-times" aria-hidden="true"></i>
-                        : <i className="fa fa-bars" aria-hidden="true"></i>
+                        ? <svg class="olymp-close-icon"><use xlinkHref="icons/icons.svg#olymp-close-icon"></use></svg>
+                        : <svg class="olymp-menu-icon"><use xlinkHref="icons/icons.svg#olymp-menu-icon"></use></svg>
                       }
                     </a>
                   </li>
@@ -94,7 +94,7 @@ class Login extends Component {
                 <ul className="nav nav-tabs" role="tablist">
                   <li className="nav-item">
                     <a className="nav-link active" data-toggle="tab" href="#home" role="tab">
-                      <i className="fa fa-user-plus" aria-hidden="true"></i>                   
+                      <svg class="olymp-login-icon"><use xlinkHref="icons/icons.svg#olymp-login-icon"></use></svg>
                     </a>
                     <div className="ripple-container">
                       <div className="ripple ripple-on"></div> 
@@ -102,7 +102,7 @@ class Login extends Component {
                   </li>
                   <li className="nav-item">
                     <a className="nav-link" data-toggle="tab" href="#profile" role="tab">
-                      <i className="fa fa-sign-in" aria-hidden="true"></i>                    
+                    <svg class="olymp-register-icon"><use xlinkHref="icons/icons.svg#olymp-register-icon"></use></svg>
                     </a>
                   </li>
                 </ul>
