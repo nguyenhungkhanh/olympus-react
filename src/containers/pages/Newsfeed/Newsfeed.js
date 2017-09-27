@@ -1,13 +1,36 @@
 import React, { Component } from 'react'
+import classNames from 'classnames'
 import './css/calendar.css';
 import './js/customs.js'
 import './js/calendar.js'
+import './css/customs.css'
 
 class Newsfeed extends Component {
+  constructor() {
+    super();
+    this.state = {
+      isOpen: {
+        sidebarLeft: false,
+        sidebarRight: false
+      }
+    }
+  }
+  handleChange(e) {
+
+  }
+  handleSidebar(location) {
+    console.log(location)
+    let isOpen = this.state.isOpen;
+    location === "left" 
+    ? isOpen.sidebarLeft = !isOpen.sidebarLeft
+    : isOpen.sidebarRight = !isOpen.sidebarRight
+    
+    this.setState({isOpen})
+  }
   render() {
     return (
       <div>
-        <div className="fixed-sidebar">
+        <div className={ classNames("fixed-sidebar", { "open": this.state.isOpen.sidebarLeft ? true : false} ) }>
           <div className="fixed-sidebar-left sidebar--small" id="sidebar-left">
             <a href="02-ProfilePage.html" className="logo">
               <img src="img/logo.png" alt="Olympus" />
@@ -15,7 +38,7 @@ class Newsfeed extends Component {
 
             <div className="mCustomScrollbar" data-mcs-theme="dark">
               <ul className="left-menu">
-                <li>
+                <li onClick={() => this.handleSidebar("left")}>
                   <a href="#" className="js-sidebar-open">
                     <svg className="olymp-menu-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="OPEN MENU">
                       <use xlinkHref="icons/icons.svg#olymp-menu-icon"></use>
@@ -84,7 +107,7 @@ class Newsfeed extends Component {
 
             <div className="mCustomScrollbar" data-mcs-theme="dark">
               <ul className="left-menu">
-                <li>
+                <li onClick={() => this.handleSidebar("left")}>
                   <a href="#" className="js-sidebar-open">
                     <svg className="olymp-close-icon left-menu-icon"><use xlinkHref="icons/icons.svg#olymp-close-icon"></use></svg> 
                     <span className="left-menu-title">Collapse Menu</span>
@@ -345,7 +368,7 @@ class Newsfeed extends Component {
     
     <!-- Fixed Sidebar Right -->  */}
 
-        <div className="fixed-sidebar right">
+        <div className={ classNames("fixed-sidebar right", { "open": this.state.isOpen.sidebarRight ? true : false}) }>
           <div className="fixed-sidebar-right sidebar--small" id="sidebar-right">
 
             <div className="mCustomScrollbar" data-mcs-theme="dark">
@@ -403,7 +426,7 @@ class Newsfeed extends Component {
                 </li>
                 <li className="inline-items js-chat-open">
                   <div className="author-thumb">
-                    <img alt="author" src="img/avatar63-sm.jpg" className="avatar" />
+                    <img alt="author" src="img/avatar68-sm.jpg" className="avatar" />
                     <span className="icon-status status-invisible"></span>
                   </div>
                 </li>
@@ -423,7 +446,7 @@ class Newsfeed extends Component {
               </ul>
             </div>
 
-            <div className="search-friend inline-items">
+            <div onClick={ () => this.handleSidebar("right") } className="search-friend inline-items">
               <a href="#" className="js-sidebar-open">
                 <svg className="olymp-menu-icon"><use xlinkHref="icons/icons.svg#olymp-menu-icon"></use></svg> 
               </a>
@@ -730,7 +753,7 @@ class Newsfeed extends Component {
                 <li className="inline-items js-chat-open">
 
                   <div className="author-thumb">
-                    <img alt="author" src="img/avatar63-sm.jpg" className="avatar" />
+                    <img alt="author" src="img/avatar68-sm.jpg" className="avatar" />
                     <span className="icon-status status-invisible"></span>
                   </div>
 
@@ -826,14 +849,14 @@ class Newsfeed extends Component {
 
             <div className="search-friend inline-items">
               <form className="form-group">
-                <input className="form-control" placeholder="Search Friends..." value="" type="text" />
+                <input onChange={ this.handleChange.bind(this) } className="form-control" placeholder="Search Friends..." value="" type="text" />
               </form>
 
               <a href="29-YourAccount-AccountSettings.html" className="settings">
                 <svg className="olymp-settings-icon"><use xlinkHref="icons/icons.svg#olymp-settings-icon"></use></svg> 
               </a>
 
-              <a href="#" className="js-sidebar-open">
+              <a onClick={ () => this.handleSidebar("right") } href="#" className="js-sidebar-open" >
                 <svg className="olymp-close-icon"><use xlinkHref="icons/icons.svg#olymp-close-icon"></use></svg> 
               </a>
 
@@ -879,7 +902,7 @@ class Newsfeed extends Component {
           <div className="header-content-wrapper">
             <form className="search-bar w-search notification-list friend-requests">
               <div className="form-group with-button">
-                <input className="form-control js-user-search" placeholder="Search here people or pages..." type="text" />
+                <input onChange={ this.handleChange.bind(this) } className="form-control js-user-search" placeholder="Search here people or pages..." type="text" />
                 <button>
                   <svg className="olymp-magnifying-glass-icon"><use xlinkHref="icons/icons.svg#olymp-magnifying-glass-icon"></use></svg> 
                 </button>
@@ -905,7 +928,7 @@ class Newsfeed extends Component {
                     <ul className="notification-list friend-requests">
                       <li>
                         <div className="author-thumb">
-                          <img src="img/avatar55-sm.jpg" alt="author" />
+                          <img src="img/avatar68-sm.jpg" alt="author" />
                         </div>
                         <div className="notification-event">
                           <a href="#" className="h6 notification-friend">Tamara Romanoff</a>
@@ -1026,7 +1049,7 @@ class Newsfeed extends Component {
                     <ul className="notification-list chat-message">
                       <li className="message-unread">
                         <div className="author-thumb">
-                          <img src="img/avatar59-sm.jpg" alt="author" />
+                          <img src="img/avatar68-sm.jpg" alt="author" />
                         </div>
                         <div className="notification-event">
                           <a href="#" className="h6 notification-friend">Diana Jameson</a>
@@ -1136,7 +1159,7 @@ class Newsfeed extends Component {
 
                       <li className="un-read">
                         <div className="author-thumb">
-                          <img src="img/avatar63-sm.jpg" alt="author" />
+                          <img src="img/avatar68-sm.jpg" alt="author" />
                         </div>
                         <div className="notification-event">
                           <div>You and <a href="#" className="h6 notification-friend">Nicholas Grissom</a> just became friends. Write on <a href="#" className="notification-link">his wall</a>.</div>
@@ -1289,7 +1312,7 @@ class Newsfeed extends Component {
                       </div>
 
                       <form className="form-group with-button custom-status">
-                        <input className="form-control" placeholder="" type="text" value="Space Cowboy" />
+                        <input onChange={ this.handleChange.bind(this) } className="form-control" placeholder="" type="text" value="Space Cowboy" />
 
                         <button className="bg-purple">
                           <svg className="olymp-check-icon"><use xlinkHref="icons/icons.svg#olymp-check-icon"></use></svg> 
@@ -1398,7 +1421,7 @@ class Newsfeed extends Component {
                 <ul className="notification-list friend-requests">
                   <li>
                     <div className="author-thumb">
-                      <img src="img/avatar55-sm.jpg" alt="author" />
+                      <img src="img/avatar68-sm.jpg" alt="author" />
                     </div>
                     <div className="notification-event">
                       <a href="#" className="h6 notification-friend">Tamara Romanoff</a>
@@ -1511,7 +1534,7 @@ class Newsfeed extends Component {
                 <ul className="notification-list chat-message">
                   <li className="message-unread">
                     <div className="author-thumb">
-                      <img src="img/avatar59-sm.jpg" alt="author" />
+                      <img src="img/avatar68-sm.jpg" alt="author" />
                     </div>
                     <div className="notification-event">
                       <a href="#" className="h6 notification-friend">Diana Jameson</a>
@@ -1617,7 +1640,7 @@ class Newsfeed extends Component {
 
                   <li className="un-read">
                     <div className="author-thumb">
-                      <img src="img/avatar63-sm.jpg" alt="author" />
+                      <img src="img/avatar68-sm.jpg" alt="author" />
                     </div>
                     <div className="notification-event">
                       <div>You and <a href="#" className="h6 notification-friend">Nicholas Grissom</a> just became friends. Write on <a href="#" className="notification-link">his wall</a>.</div>
@@ -1703,7 +1726,7 @@ class Newsfeed extends Component {
 
               <form className="search-bar w-search notification-list friend-requests">
                 <div className="form-group with-button">
-                  <input className="form-control js-user-search" placeholder="Search here people or pages..." type="text" />
+                  <input onChange={ this.handleChange.bind(this) } className="form-control js-user-search" placeholder="Search here people or pages..." type="text" />
                 </div>
               </form>
 
@@ -1765,8 +1788,8 @@ class Newsfeed extends Component {
                           <img src="img/author-page.jpg" alt="author" />
                         </div>
                         <div className="form-group with-icon label-floating is-empty">
-                          <label className="control-label">Share what you are thinking here...</label>
                           <textarea className="form-control" placeholder=""></textarea>
+                          <label className="control-label">Chia sẻ những gì bạn đang nghĩ !!!</label>
                         </div>
                         <div className="add-options-message">
                           <a href="#" className="options-message" data-toggle="tooltip" data-placement="top" data-original-title="ADD PHOTOS">
@@ -1794,7 +1817,7 @@ class Newsfeed extends Component {
                           <img src="img/author-page.jpg" alt="author" />
                         </div>
                         <div className="form-group with-icon label-floating is-empty">
-                          <label className="control-label">Share what you are thinking here...</label>
+                          <label className="control-label">Chia sẻ những gì bạn đang nghĩ !!!</label>
                           <textarea className="form-control" placeholder=""  ></textarea>
                         </div>
                         <div className="add-options-message">
@@ -1823,7 +1846,7 @@ class Newsfeed extends Component {
                           <img src="img/author-page.jpg" alt="author" />
                         </div>
                         <div className="form-group with-icon label-floating is-empty">
-                          <label className="control-label">Share what you are thinking here...</label>
+                          <label className="control-label">Chia sẻ những gì bạn đang nghĩ !!!</label>
                           <textarea className="form-control" placeholder=""  ></textarea>
                         </div>
                         <div className="add-options-message">
@@ -2297,7 +2320,7 @@ class Newsfeed extends Component {
                   <article className="hentry post has-post-thumbnail">
 
                     <div className="post__author author vcard inline-items">
-                      <img src="img/avatar3-sm.jpg" alt="author" />
+                      <img src="img/avatar10-sm.jpg" alt="author" />
 
                       <div className="author-date">
                         <a className="h6 post__author-name fn" href="#">Sarah Hetfield</a>
@@ -2378,7 +2401,7 @@ class Newsfeed extends Component {
                   <article className="hentry post has-post-thumbnail">
 
                     <div className="post__author author vcard inline-items">
-                      <img src="img/avatar2-sm.jpg" alt="author" />
+                      <img src="img/avatar5-sm.jpg" alt="author" />
 
                       <div className="author-date">
                         <a className="h6 post__author-name fn" href="#">Nicholas Grissom</a>
@@ -2604,54 +2627,54 @@ class Newsfeed extends Component {
                       </thead>
                       <tbody>
                         <tr>
-                          <td date-month="12" date-day="1">1</td>
-                          <td date-month="12" date-day="2" className="event-uncomplited event-complited">
+                          <td>1</td>
+                          <td className="event-uncomplited event-complited">
                             2
                     </td>
-                          <td date-month="12" date-day="3">3</td>
-                          <td date-month="12" date-day="4">4</td>
-                          <td date-month="12" date-day="5">5</td>
-                          <td date-month="12" date-day="6">6</td>
-                          <td date-month="12" date-day="7">7</td>
+                          <td>3</td>
+                          <td>4</td>
+                          <td>5</td>
+                          <td>6</td>
+                          <td>7</td>
                         </tr>
                         <tr>
-                          <td date-month="12" date-day="8">8</td>
-                          <td date-month="12" date-day="9">9</td>
-                          <td date-month="12" date-day="10" className="event-complited">10</td>
-                          <td date-month="12" date-day="11">11</td>
-                          <td date-month="12" date-day="12">12</td>
-                          <td date-month="12" date-day="13">13</td>
-                          <td date-month="12" date-day="14">14</td>
+                          <td>8</td>
+                          <td>9</td>
+                          <td className="event-complited">10</td>
+                          <td>11</td>
+                          <td>12</td>
+                          <td>13</td>
+                          <td>14</td>
                         </tr>
                         <tr>
-                          <td date-month="12" date-day="15" className="event-complited-2">15</td>
-                          <td date-month="12" date-day="16">16</td>
-                          <td date-month="12" date-day="17">17</td>
-                          <td date-month="12" date-day="18">18</td>
-                          <td date-month="12" date-day="19">19</td>
-                          <td date-month="12" date-day="20">20</td>
-                          <td date-month="12" date-day="21">21</td>
+                          <td className="event-complited-2">15</td>
+                          <td>16</td>
+                          <td>17</td>
+                          <td>18</td>
+                          <td>19</td>
+                          <td>20</td>
+                          <td>21</td>
                         </tr>
                         <tr>
-                          <td date-month="12" date-day="22">22</td>
-                          <td date-month="12" date-day="23">23</td>
-                          <td date-month="12" date-day="24">24</td>
-                          <td date-month="12" date-day="25">25</td>
-                          <td date-month="12" date-day="26">26</td>
-                          <td date-month="12" date-day="27">27</td>
-                          <td date-month="12" date-day="28" className="event-uncomplited">28</td>
+                          <td>22</td>
+                          <td>23</td>
+                          <td>24</td>
+                          <td>25</td>
+                          <td>26</td>
+                          <td>27</td>
+                          <td className="event-uncomplited">28</td>
                         </tr>
                         <tr>
-                          <td date-month="12" date-day="29">29</td>
-                          <td date-month="12" date-day="30">30</td>
-                          <td date-month="12" date-day="31">31</td>
+                          <td>29</td>
+                          <td>30</td>
+                          <td>31</td>
                         </tr>
                       </tbody>
                     </table>
                     <div className="list">
 
 
-                      <div id="accordion-1" role="tablist" aria-multiselectable="true" className="day-event" date-month="12" date-day="2">
+                      <div id="accordion-1" role="tablist" aria-multiselectable="true" className="day-event">
                         <div className="ui-block-title ui-block-title-small">
                           <h6 className="title">TODAY’S EVENTS</h6>
                         </div>
@@ -2765,7 +2788,7 @@ class Newsfeed extends Component {
                         <a href="#" className="check-all">Check all your Events</a>
                       </div>
 
-                      <div id="accordion-2" role="tablist" aria-multiselectable="true" className="day-event" date-month="12" date-day="10">
+                      <div id="accordion-2" role="tablist" aria-multiselectable="true" className="day-event">
                         <div className="ui-block-title ui-block-title-small">
                           <h6 className="title">TODAY’S EVENTS</h6>
                         </div>
@@ -2832,7 +2855,7 @@ class Newsfeed extends Component {
                         <a href="#" className="check-all">Check all your Events</a>
                       </div>
 
-                      <div id="accordion-3" role="tablist" aria-multiselectable="true" className="day-event" date-month="12" date-day="15">
+                      <div id="accordion-3" role="tablist" aria-multiselectable="true" className="day-event">
                         <div className="ui-block-title ui-block-title-small">
                           <h6 className="title">TODAY’S EVENTS</h6>
                         </div>
@@ -2946,7 +2969,7 @@ class Newsfeed extends Component {
                         <a href="#" className="check-all">Check all your Events</a>
                       </div>
 
-                      <div id="accordion-4" role="tablist" aria-multiselectable="true" className="day-event" date-month="12" date-day="28">
+                      <div id="accordion-4" role="tablist" aria-multiselectable="true" className="day-event">
                         <div className="ui-block-title ui-block-title-small">
                           <h6 className="title">TODAY’S EVENTS</h6>
                         </div>
@@ -3408,7 +3431,7 @@ class Newsfeed extends Component {
                     <div className="radio">
                       <label className="custom-radio">
                         <img src="img/choose-photo1.jpg" alt="photo" />
-                        <input type="radio" name="optionsRadios" />
+                        <input onChange={ this.handleChange.bind(this) } type="radio" name="optionsRadios" />
                       </label>
                     </div>
                   </div>
@@ -3416,7 +3439,7 @@ class Newsfeed extends Component {
                     <div className="radio">
                       <label className="custom-radio">
                         <img src="img/choose-photo2.jpg" alt="photo" />
-                        <input type="radio" name="optionsRadios" />
+                        <input onChange={ this.handleChange.bind(this) } type="radio" name="optionsRadios" />
                       </label>
                     </div>
                   </div>
@@ -3424,7 +3447,7 @@ class Newsfeed extends Component {
                     <div className="radio">
                       <label className="custom-radio">
                         <img src="img/choose-photo3.jpg" alt="photo" />
-                        <input type="radio" name="optionsRadios" />
+                        <input onChange={ this.handleChange.bind(this) } type="radio" name="optionsRadios" />
                       </label>
                     </div>
                   </div>
@@ -3433,7 +3456,7 @@ class Newsfeed extends Component {
                     <div className="radio">
                       <label className="custom-radio">
                         <img src="img/choose-photo4.jpg" alt="photo" />
-                        <input type="radio" name="optionsRadios" />
+                        <input onChange={ this.handleChange.bind(this) } type="radio" name="optionsRadios" />
                       </label>
                     </div>
                   </div>
@@ -3441,7 +3464,7 @@ class Newsfeed extends Component {
                     <div className="radio">
                       <label className="custom-radio">
                         <img src="img/choose-photo5.jpg" alt="photo" />
-                        <input type="radio" name="optionsRadios" />
+                        <input onChange={ this.handleChange.bind(this) } type="radio" name="optionsRadios" />
                       </label>
                     </div>
                   </div>
@@ -3449,7 +3472,7 @@ class Newsfeed extends Component {
                     <div className="radio">
                       <label className="custom-radio">
                         <img src="img/choose-photo6.jpg" alt="photo" />
-                        <input type="radio" name="optionsRadios" />
+                        <input onChange={ this.handleChange.bind(this) } type="radio" name="optionsRadios" />
                       </label>
                     </div>
                   </div>
@@ -3458,7 +3481,7 @@ class Newsfeed extends Component {
                     <div className="radio">
                       <label className="custom-radio">
                         <img src="img/choose-photo7.jpg" alt="photo" />
-                        <input type="radio" name="optionsRadios" />
+                        <input onChange={ this.handleChange.bind(this) } type="radio" name="optionsRadios" />
                       </label>
                     </div>
                   </div>
@@ -3466,7 +3489,7 @@ class Newsfeed extends Component {
                     <div className="radio">
                       <label className="custom-radio">
                         <img src="img/choose-photo8.jpg" alt="photo" />
-                        <input type="radio" name="optionsRadios" />
+                        <input onChange={ this.handleChange.bind(this) } type="radio" name="optionsRadios" />
                       </label>
                     </div>
                   </div>
@@ -3474,7 +3497,7 @@ class Newsfeed extends Component {
                     <div className="radio">
                       <label className="custom-radio">
                         <img src="img/choose-photo9.jpg" alt="photo" />
-                        <input type="radio" name="optionsRadios" />
+                        <input onChange={ this.handleChange.bind(this) } type="radio" name="optionsRadios" />
                       </label>
                     </div>
                   </div>
