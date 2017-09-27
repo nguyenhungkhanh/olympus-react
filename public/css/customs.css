@@ -1,0 +1,10 @@
+.form-group.label-floating.is-empty input:focus ~ label {
+  top: 10px;
+  font-size: 11px;
+  line-height: 1.07143;
+}
+.news-feed-form .tab-content textarea:focus ~ label {
+  top: 10px;
+  font-size: 11px;
+  line-height: 1.07143;
+}

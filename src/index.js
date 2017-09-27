@@ -1,20 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Login from './containers/pages/Login/index.js'
 import App from './App';
-import Newsfeed from './containers/pages/Newsfeed/Newsfeed.js';
 import registerServiceWorker from './registerServiceWorker';
 import {
   BrowserRouter as Router,
   Route,
-  Link
+  Link,
+  Switch
 } from 'react-router-dom'
 
 ReactDOM.render(
   <Router>
-    <div>
+    <Switch>
       <Route exact path="/" component={App} />
-      <Route path="/newsfeed" component={Newsfeed} />
-    </div>
+      <Route path="/profile-settings" component={App} />
+      <Route path="/profile" component={App} />
+      <Route path="/login" component={Login} /> 
+    </Switch>
   </Router>, 
   document.getElementById('root')
 );
